@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# aiflow 安装脚本：在用户级目录创建符号链接，不向任何项目写入文件。
+# ai-workflow 安装脚本：在用户级目录创建符号链接，不向任何项目写入文件。
 set -euo pipefail
 
-AIFLOW_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+AI_WORKFLOW_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CURSOR_SKILLS_DIR="$HOME/.cursor/skills"
 
-echo "aiflow 仓库路径: $AIFLOW_DIR"
+echo "ai-workflow 仓库路径: $AI_WORKFLOW_DIR"
 echo "目标目录:       $CURSOR_SKILLS_DIR"
 
 mkdir -p "$CURSOR_SKILLS_DIR"
@@ -14,7 +14,7 @@ installed=0
 skipped=0
 conflict=0
 
-for skill_dir in "$AIFLOW_DIR"/core/skills/*/ "$AIFLOW_DIR"/company/skills/*/; do
+for skill_dir in "$AI_WORKFLOW_DIR"/core/skills/*/ "$AI_WORKFLOW_DIR"/company/skills/*/; do
   [ -d "$skill_dir" ] || continue
   name="$(basename "$skill_dir")"
   target="$CURSOR_SKILLS_DIR/$name"

@@ -1,21 +1,21 @@
 ---
-name: aiflow-dev
+name: ai-workflow-dev
 description: >-
-  AIflow 功能开发主链路：需求录入 → 需求澄清 → 设计评审 → 任务拆解与工时预估 →
-  编码实现 → 单元测试 → 复盘。触发词："aiflow"、"走流程"、"新需求"、"开发需求"、
+  AI-Workflow 功能开发主链路：需求录入 → 需求澄清 → 设计评审 → 任务拆解与工时预估 →
+  编码实现 → 单元测试 → 复盘。触发词："ai-workflow"、"走流程"、"新需求"、"开发需求"、
   "启动工作流"，或用户提供 PRD/需求描述并要求端到端完成。多轮对话、逐关卡人工确认。
 ---
 
-# aiflow-dev 功能开发主链路
+# ai-workflow-dev 功能开发主链路
 
 端到端功能开发编排器。**每个阶段必须先落盘产物、再经用户确认才能推进**，禁止跳阶段（用户显式声明跳过除外）。
 
 ## 阶段 0：环境与状态恢复
 
 1. **公司环境探测**：检查当前项目是否为公司仓库（特征：pom.xml 含 `com.immomo` groupId，或目录名为 `ultron-*`）。
-   - 是公司仓库 → 读取 aiflow-amar skill 并加载公司知识（组件清单、代码风格、结构惯例）。
+   - 是公司仓库 → 读取 ai-workflow-amar skill 并加载公司知识（组件清单、代码风格、结构惯例）。
    - 非公司仓库 → 仅使用通用层，不引用任何公司组件知识。
-2. **状态恢复**：读取 `~/workspace/aiflow/runtime/tasks/CURRENT` 文件。
+2. **状态恢复**：读取 `~/workspace/ai-workflow/runtime/tasks/CURRENT` 文件。
    - 存在且任务未完结 → 恢复上下文：读取该任务的状态文件与各阶段产物，从上次停留的阶段继续。
    - 上下文被压缩后重新开始工作时，**必须**先做本步骤，严禁凭摘要记忆续做。
 
@@ -41,13 +41,13 @@ description: >-
 
 ## 阶段 3：设计评审
 
-调用 aiflow-design-review skill 的流程：产出设计文档 → 独立子 Agent 对抗性评审 → 按意见修订 → 用户批准。产物 `03-design.md`。
+调用 ai-workflow-design-review skill 的流程：产出设计文档 → 独立子 Agent 对抗性评审 → 按意见修订 → 用户批准。产物 `03-design.md`。
 
 **轻量豁免**：若改动范围明确 ≤3 个文件且无架构影响，可征求用户同意后跳过本阶段，直接进入阶段 4，并在任务状态中记录跳过原因。
 
 ## 阶段 4：任务拆解与工时预估
 
-调用 aiflow-estimate skill 的流程。产物 `04-tasks.md`，含：子任务清单（可分工粒度）、依赖关系、每个任务的工时预估与风险标注。协同开发场景下，明确标注哪些子任务可并行分给同事、接口约定是什么。
+调用 ai-workflow-estimate skill 的流程。产物 `04-tasks.md`，含：子任务清单（可分工粒度）、依赖关系、每个任务的工时预估与风险标注。协同开发场景下，明确标注哪些子任务可并行分给同事、接口约定是什么。
 
 用户确认拆解后进入阶段 5。
 
@@ -81,11 +81,11 @@ description: >-
 
 ## 阶段 8：复盘关卡
 
-**强制**。调用 aiflow-retro skill：生成执行日志 → 用户人工填写"本次 AI 的问题" → 生成改进提案。复盘未完成不得宣布任务结束。
+**强制**。调用 ai-workflow-retro skill：生成执行日志 → 用户人工填写"本次 AI 的问题" → 生成改进提案。复盘未完成不得宣布任务结束。
 
 ## 任务状态管理
 
-任务目录：`~/workspace/aiflow/runtime/tasks/{YYYYMMDD}-{slug}/`，结构：
+任务目录：`~/workspace/ai-workflow/runtime/tasks/{YYYYMMDD}-{slug}/`，结构：
 
 ```
 state.md        # 当前阶段、各阶段状态
@@ -103,6 +103,6 @@ retro.md
 
 ## 快捷模式
 
-- `aiflow-dev --light`：跳过设计评审与拆解，适合 ≤3 文件的小改动（仍需澄清、编码、自测、复盘）。
-- `aiflow-dev --continue`：直接恢复 CURRENT 任务。
+- `ai-workflow-dev --light`：跳过设计评审与拆解，适合 ≤3 文件的小改动（仍需澄清、编码、自测、复盘）。
+- `ai-workflow-dev --continue`：直接恢复 CURRENT 任务。
 - 任意阶段可说"跳过本阶段"，跳过必须记录在 state.md 且由用户确认。

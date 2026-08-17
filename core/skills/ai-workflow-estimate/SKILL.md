@@ -1,11 +1,11 @@
 ---
-name: aiflow-estimate
+name: ai-workflow-estimate
 description: >-
   任务拆解与工时预估，输出可分工的子任务清单。触发词："拆解任务"、"预估工时"、
-  "排期"、"分工"，或由 aiflow-dev 阶段 4 调用。
+  "排期"、"分工"，或由 ai-workflow-dev 阶段 4 调用。
 ---
 
-# aiflow-estimate 任务拆解与工时预估
+# ai-workflow-estimate 任务拆解与工时预估
 
 把设计产物转化为可执行、可分工、可排期的子任务清单。
 
@@ -57,4 +57,4 @@ description: >-
 
 ## 与用户的确认点
 
-拆解完成后必须让用户确认：粒度是否合适、预估口径是否认可、分工建议是否采纳。确认后回传 aiflow-dev 主流程。
+拆解完成后必须让用户确认：粒度是否合适、预估口径是否认可、分工建议是否采纳。确认后回传 ai-workflow-dev 主流程。

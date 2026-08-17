@@ -1,6 +1,6 @@
-# aiflow 设计思路文档
+# ai-workflow 设计思路文档
 
-> 本文档记录 aiflow 工作流体系的完整设计思路：输入分析、决策依据、机制说明、迭代规则。
+> 本文档记录 ai-workflow 工作流体系的完整设计思路：输入分析、决策依据、机制说明、迭代规则。
 > 维护者（人或 AI Agent）在修改本体系前必须阅读本文档。
 > 版本：0.1.0（2026-08-17）
 
@@ -60,12 +60,12 @@
 
 | 结论 | 落点 |
 |------|------|
-| commit 风格 `feat:/fix:/opt:` + 中文描述，单号在分支名 | `aiflow-amar` 第 3 节 Commit 规范 |
-| 代码风格：`BusinessCheckException(EcInfo)`、`AlarmUtil`/`HubbleAlarm` 告警、`JsonUtilsV2`、`@Slf4j` 占位符日志、V2 后缀、策略模式偏好 | `aiflow-amar` 第 3 节代码风格规范 |
-| 组件栈：MOA RPC、`@MomoConfig`、momostore `IStoreDao`、Kafka/goback、Hubble | `aiflow-amar` 第 2 节选型表 |
-| 结构惯例：api/service/wrapper 三件套，`ultron-dependency` 为公共基础库、`ultron-wrapper` 为封装层 | `aiflow-amar` 第 1 节 |
-| bugfix : feat ≈ 6 : 4，提交粒度极小、联调期大量小修复 | `aiflow-bugfix` 定为高频链路；编码支持小步快跑 |
-| 根 pom 默认 skipTests=true，CI 有 checkstyle/spotbugs | `aiflow-amar` 第 5 节测试注意 |
+| commit 风格 `feat:/fix:/opt:` + 中文描述，单号在分支名 | `ai-workflow-amar` 第 3 节 Commit 规范 |
+| 代码风格：`BusinessCheckException(EcInfo)`、`AlarmUtil`/`HubbleAlarm` 告警、`JsonUtilsV2`、`@Slf4j` 占位符日志、V2 后缀、策略模式偏好 | `ai-workflow-amar` 第 3 节代码风格规范 |
+| 组件栈：MOA RPC、`@MomoConfig`、momostore `IStoreDao`、Kafka/goback、Hubble | `ai-workflow-amar` 第 2 节选型表 |
+| 结构惯例：api/service/wrapper 三件套，`ultron-dependency` 为公共基础库、`ultron-wrapper` 为封装层 | `ai-workflow-amar` 第 1 节 |
+| bugfix : feat ≈ 6 : 4，提交粒度极小、联调期大量小修复 | `ai-workflow-bugfix` 定为高频链路；编码支持小步快跑 |
+| 根 pom 默认 skipTests=true，CI 有 checkstyle/spotbugs | `ai-workflow-amar` 第 5 节测试注意 |
 
 ### 2.3 本地旧 skills 提炼（9 个文件）
 
@@ -73,9 +73,9 @@
 
 **继承的三大机制**：
 
-1. **三角色对抗评审**（源自 ralplan）：评审者与作者是不同的 Agent，且评审者看不到作者的推理过程 → 落点 `aiflow-design-review` 的独立只读子 Agent
-2. **三级失败闭环**（源自 ralph）：记录 → 同类 2 次生成提案 → 同问题 3 次升级用户 → 落点 `aiflow-retro` 的提案升级规则
-3. **三级证据纪律**（源自 auto-troubleshoot）：【已证实/待验证/推测】，禁止"根因可能是…"式表述 → 落点 `aiflow-design-review` 第 4 节与 `aiflow-bugfix` 阶段 2
+1. **三角色对抗评审**（源自 ralplan）：评审者与作者是不同的 Agent，且评审者看不到作者的推理过程 → 落点 `ai-workflow-design-review` 的独立只读子 Agent
+2. **三级失败闭环**（源自 ralph）：记录 → 同类 2 次生成提案 → 同问题 3 次升级用户 → 落点 `ai-workflow-retro` 的提案升级规则
+3. **三级证据纪律**（源自 auto-troubleshoot）：【已证实/待验证/推测】，禁止"根因可能是…"式表述 → 落点 `ai-workflow-design-review` 第 4 节与 `ai-workflow-bugfix` 阶段 2
 
 **隔离清单（明确不复用的东西）**：
 - `.devflow/` 目录体系及全部文件命名（新体系用 `runtime/tasks/`）
@@ -84,7 +84,7 @@
 - RALPLAN-DR 等专有文档模板格式
 - FeedbackGate 的 alwaysApply 全局强制（改为只在关卡点使用）
 
-**公司工具生态能力清单**（Kibana/MSE/BeanShell 后门/Hubble/appKey 体系/环境抽象），全部收敛进 `aiflow-amar` 第 4 节，并保留安全红线（后门仅线下、线上操作需确认）。
+**公司工具生态能力清单**（Kibana/MSE/BeanShell 后门/Hubble/appKey 体系/环境抽象），全部收敛进 `ai-workflow-amar` 第 4 节，并保留安全红线（后门仅线下、线上操作需确认）。
 
 ---
 
@@ -101,7 +101,7 @@
 | 全局 `~/.cursor/skills/` 复制文件 | 更新要重装，且混入全局目录 |
 | **git 仓库 + 软链**（选定） | 单一真源、更新即时、卸载干净、版本可追溯 |
 
-软链只指向 `~/.cursor/skills/aiflow-*`，`uninstall.sh` 只删指向本仓库的链接，对其他 skill 零影响。
+软链只指向 `~/.cursor/skills/ai-workflow-*`，`uninstall.sh` 只删指向本仓库的链接，对其他 skill 零影响。
 
 ### 3.2 双层架构：core / company
 
@@ -117,7 +117,7 @@
 
 - 每阶段产物落盘（`01-requirement.md` … `ledger.md`）才能推进
 - `state.md` 记录当前阶段，`runtime/tasks/CURRENT` 记录活跃任务
-- **上下文压缩后必须先做状态恢复**（aiflow-dev 阶段 0），这是从 FeedbackGate 的压缩恢复经验学来的：长流程必须在设计期考虑压缩场景，而不是事后打补丁
+- **上下文压缩后必须先做状态恢复**（ai-workflow-dev 阶段 0），这是从 FeedbackGate 的压缩恢复经验学来的：长流程必须在设计期考虑压缩场景，而不是事后打补丁
 
 ### 3.4 强制复盘 + 人工反馈
 
@@ -142,28 +142,28 @@
 ## 4. 技能体系架构
 
 ```
-                        aiflow-dev（主链路编排器）
+                        ai-workflow-dev（主链路编排器）
                               │
    ┌──────────┬───────────┼───────────┬──────────┐
    ▼          ▼           ▼           ▼          ▼
  阶段2      阶段3        阶段4       阶段5-6    阶段8
- 澄清      aiflow-      aiflow-     编码+单测   aiflow-retro
+ 澄清      ai-workflow-      ai-workflow-     编码+单测   ai-workflow-retro
 （内联）   design-review  estimate  （内联）      │
               │                                  │
               └── 公司仓库时自动加载 ──┐          │
-                                    aiflow-amar ◄┘
+                                    ai-workflow-amar ◄┘
                                         ▲
-                        aiflow-bugfix ──┘（独立链路，共享 amar 与 retro）
+                        ai-workflow-bugfix ──┘（独立链路，共享 amar 与 retro）
 ```
 
 | Skill | 类型 | 职责 |
 |-------|------|------|
-| aiflow-dev | 编排器 | 功能开发全流程，关卡式推进 |
-| aiflow-design-review | 阶段 skill | 设计文档 + 独立对抗评审，可独立使用 |
-| aiflow-estimate | 阶段 skill | 拆解与工时，可独立使用 |
-| aiflow-bugfix | 编排器 | 修 bug 独立链路（高频，占用户工作 6 成） |
-| aiflow-retro | 关卡 skill | 复盘，被两条链路强制调用 |
-| aiflow-amar | 知识层 | 公司组件/风格/工具知识，仅公司仓库加载 |
+| ai-workflow-dev | 编排器 | 功能开发全流程，关卡式推进 |
+| ai-workflow-design-review | 阶段 skill | 设计文档 + 独立对抗评审，可独立使用 |
+| ai-workflow-estimate | 阶段 skill | 拆解与工时，可独立使用 |
+| ai-workflow-bugfix | 编排器 | 修 bug 独立链路（高频，占用户工作 6 成） |
+| ai-workflow-retro | 关卡 skill | 复盘，被两条链路强制调用 |
+| ai-workflow-amar | 知识层 | 公司组件/风格/工具知识，仅公司仓库加载 |
 
 设计取舍：**bugfix 不复用 dev 链路**。因为两者节奏完全不同——dev 是关卡式长流程，bugfix 是证据驱动的侦查流程，强行统一会让两边都难用（这也是旧体系 prd-reader/ralplan/ralph 线性流水线的教训）。
 
@@ -175,7 +175,7 @@
 
 每阶段：落盘产物 → 用户确认 → 推进。跳过必须用户显式声明并记录。轻量豁免：≤3 文件且无架构影响可跳过设计评审（仍需用户同意）。
 
-### 5.2 红旗停表（aiflow-dev 阶段 5）
+### 5.2 红旗停表（ai-workflow-dev 阶段 5）
 
 五种情况立即停止询问，禁止自行绕路：设计冲突、跨团队改动、新依赖、同错误失败 2 次、需求遗漏。源自 superpowers 的反合理化表思想——预先列出 Agent 容易"自作聪明"的场景。
 
@@ -203,7 +203,7 @@
 
 | 限制 | 说明 | 可能的演进 |
 |------|------|-----------|
-| 公司工具未脚本化 | aiflow-amar 只描述能力清单，实际查询仍依赖旧 skill/手工 | 若高频使用，可仿 kibana-log-statistics 的"SKILL+scripts 分层"模式沉淀脚本 |
+| 公司工具未脚本化 | ai-workflow-amar 只描述能力清单，实际查询仍依赖旧 skill/手工 | 若高频使用，可仿 kibana-log-statistics 的"SKILL+scripts 分层"模式沉淀脚本 |
 | 工时预估靠系数 | 无历史数据校准 | 积累 ≥10 份 estimate 产物后，用实际耗时回填校准系数 |
 | 单测覆盖策略粗 | 仅"核心逻辑必测" | 可结合 CI jacoco 数据细化 |
 | 协同通知未打通 | 拆解产物有分工建议，但无自动通知同事 | 需要 IM 集成，暂缓 |
@@ -215,15 +215,15 @@
 
 | 用户原始需求 | 实现位置 |
 |-------------|---------|
-| 可持续迭代 | aiflow-retro + CHANGELOG + git 版本管理 |
+| 可持续迭代 | ai-workflow-retro + CHANGELOG + git 版本管理 |
 | 多轮对话 | 关卡式推进 + 状态外化（CURRENT/state.md）+ 中断恢复 |
-| 符合我的代码风格 | aiflow-amar（从真实提交提炼） |
-| 需求分析到澄清到设计到编码到质量保证 | aiflow-dev 阶段 1-7 |
+| 符合我的代码风格 | ai-workflow-amar（从真实提交提炼） |
+| 需求分析到澄清到设计到编码到质量保证 | ai-workflow-dev 阶段 1-7 |
 | 区分内部组件与公共功能、非公司可复用 | core/company 双层 + 自动探测降级 |
-| 任务拆解 + 预估工时 | aiflow-estimate |
-| 单元测试 | aiflow-dev 阶段 6 |
-| 修 bug 链路 | aiflow-bugfix |
-| 复盘需人工提出 AI 问题、记录执行日志 | aiflow-retro + runtime 模板 |
+| 任务拆解 + 预估工时 | ai-workflow-estimate |
+| 单元测试 | ai-workflow-dev 阶段 6 |
+| 修 bug 链路 | ai-workflow-bugfix |
+| 复盘需人工提出 AI 问题、记录执行日志 | ai-workflow-retro + runtime 模板 |
 | 不污染项目 | 软链方案 + install/uninstall 脚本 |
 | 与旧体系隔离、只借鉴思想 | 见 2.3 隔离清单、AGENTS.md 红线 |
 

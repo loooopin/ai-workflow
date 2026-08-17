@@ -1,12 +1,12 @@
 ---
-name: aiflow-amar
+name: ai-workflow-amar
 description: >-
   HelloGroup amar/ultron 公司适配层：内部组件知识库、用户代码风格规范、仓库结构惯例、
-  公司工具对接清单。由 aiflow-dev/aiflow-bugfix 在探测到公司仓库时自动加载，
+  公司工具对接清单。由 ai-workflow-dev/ai-workflow-bugfix 在探测到公司仓库时自动加载，
   也可触发词手动加载："加载公司规范"、"amar 规范"。非公司项目禁止加载。
 ---
 
-# aiflow-amar 公司适配层
+# ai-workflow-amar 公司适配层
 
 仅在公司仓库（pom.xml 含 `com.immomo` groupId，或目录为 `ultron-*`）生效。编码、评审、测试时必须遵守本文件。
 
@@ -89,5 +89,5 @@ description: >-
 ## 6. 用户工作模式画像（供 Agent 对齐）
 
 - 提交粒度小、频率高，联调期大量小修复 → 工作流应支持"小步快跑"式编码，不要攒大改动
-- bugfix 占比约 6 成 → aiflow-bugfix 是高频链路
+- bugfix 占比约 6 成 → ai-workflow-bugfix 是高频链路
 - 工作时间集中 10:00-21:00，涉及线上操作提醒注意时段与审批

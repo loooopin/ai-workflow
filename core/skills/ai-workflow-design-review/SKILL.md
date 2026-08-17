@@ -1,11 +1,11 @@
 ---
-name: aiflow-design-review
+name: ai-workflow-design-review
 description: >-
   设计文档产出与独立对抗性评审。触发词："设计评审"、"评审方案"、"出设计文档"，
-  或由 aiflow-dev 阶段 3 调用。可独立使用：给定需求规格即可产出经评审的设计文档。
+  或由 ai-workflow-dev 阶段 3 调用。可独立使用：给定需求规格即可产出经评审的设计文档。
 ---
 
-# aiflow-design-review 设计评审
+# ai-workflow-design-review 设计评审
 
 产出设计文档并用独立子 Agent 做对抗性评审，消除"自己审自己"的确认偏差。
 

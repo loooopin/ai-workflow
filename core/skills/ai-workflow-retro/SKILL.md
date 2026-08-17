@@ -1,12 +1,12 @@
 ---
-name: aiflow-retro
+name: ai-workflow-retro
 description: >-
   任务复盘关卡：生成执行日志、收集人工对 AI 的问题反馈、产出改进提案并落到
-  CHANGELOG。触发词："复盘"、"retro"、"总结这次任务"，或由 aiflow-dev/aiflow-bugfix
+  CHANGELOG。触发词："复盘"、"retro"、"总结这次任务"，或由 ai-workflow-dev/ai-workflow-bugfix
   的复盘阶段强制调用。
 ---
 
-# aiflow-retro 复盘关卡
+# ai-workflow-retro 复盘关卡
 
 工作流可持续迭代的核心机制。复盘未完成不得宣布任务结束。
 

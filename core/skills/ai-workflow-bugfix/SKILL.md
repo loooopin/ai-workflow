@@ -1,18 +1,18 @@
 ---
-name: aiflow-bugfix
+name: ai-workflow-bugfix
 description: >-
   结构化修 bug 链路：现象收集 → 证据定位 → 根因分析 → 修复 → 回归验证 → 复盘。
-  触发词："aiflow bugfix"、"修 bug"、"排查问题"、"线上问题"，或用户报告缺陷。
+  触发词："ai-workflow bugfix"、"修 bug"、"排查问题"、"线上问题"，或用户报告缺陷。
   公司项目自动对接日志/配置工具，非公司项目自动降级为纯代码链路。
 ---
 
-# aiflow-bugfix 修 bug 链路
+# ai-workflow-bugfix 修 bug 链路
 
 修 bug 与优化的结构化流程。核心纪律：**先定位后动手，证据先于结论**。
 
 ## 阶段 0：环境探测
 
-同 aiflow-dev：公司仓库则加载 aiflow-amar 知识与公司工具能力（日志查询、配置查询）；非公司仓库降级为纯代码+本地日志链路。
+同 ai-workflow-dev：公司仓库则加载 ai-workflow-amar 知识与公司工具能力（日志查询、配置查询）；非公司仓库降级为纯代码+本地日志链路。
 
 ## 阶段 1：现象收集
 
@@ -47,7 +47,7 @@ description: >-
 ## 阶段 4：修复
 
 1. 给出修复方案（最小改动优先；如需重构必须说明理由并评估影响面）。
-2. 公司仓库遵守公司编码规范（异常、告警、日志风格见 aiflow-amar）。
+2. 公司仓库遵守公司编码规范（异常、告警、日志风格见 ai-workflow-amar）。
 3. 若修复涉及其他团队模块 → 红旗停表，询问用户是否由本人改或通知对方。
 
 ## 阶段 5：回归验证
@@ -58,7 +58,7 @@ description: >-
 
 ## 阶段 6：复盘（强制）
 
-调用 aiflow-retro：
+调用 ai-workflow-retro：
 
 - 记录：现象、根因、修复方式、耗时
 - 必答三问：为什么测试没覆盖到？为什么监控没发现？同类问题如何预防？
@@ -66,4 +66,4 @@ description: >-
 
 ## 快捷模式
 
-- `aiflow-bugfix --hotfix`：跳过完整复盘，只写一行记录进 retro 的 hotfix 清单，事后补全。
+- `ai-workflow-bugfix --hotfix`：跳过完整复盘，只写一行记录进 retro 的 hotfix 清单，事后补全。

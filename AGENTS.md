@@ -34,6 +34,6 @@ docs/DESIGN.md        设计思路（本文件的详细版）
 | 场景 | 做法 |
 |------|------|
 | 复盘采纳了改进提案 | 改对应 skill/模板 → 追加 CHANGELOG → git commit |
-| 新增节点/skill | 先更新 docs/DESIGN.md 的架构节，再建目录，命名前缀 `aiflow-` |
-| 公司组件栈变化 | 只改 `company/skills/aiflow-amar/SKILL.md` |
+| 新增节点/skill | 先更新 docs/DESIGN.md 的架构节，再建目录，命名前缀 `ai-workflow-` |
+| 公司组件栈变化 | 只改 `company/skills/ai-workflow-amar/SKILL.md` |
 | 累计 ≥5 份 retro | 可触发聚类分析，产出结构性改进建议（需用户批准） |

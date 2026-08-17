@@ -1,21 +1,21 @@
-# aiflow
+# ai-workflow
 
 一套可持续迭代、多轮对话、贴合本人代码风格的研发工作流，覆盖从需求分析到质量保证的全链路。
 
 ## 架构
 
 ```
-aiflow/
+ai-workflow/
 ├── core/                      # 通用层：任何项目可复用
 │   ├── skills/
-│   │   ├── aiflow-dev/        # 功能开发主链路（编排器）
-│   │   ├── aiflow-design-review/  # 设计文档 + 独立对抗评审
-│   │   ├── aiflow-estimate/   # 任务拆解与工时预估
-│   │   ├── aiflow-bugfix/     # 修 bug 链路（公司项目自动对接工具）
-│   │   └── aiflow-retro/      # 复盘关卡（人工反馈 + 改进提案）
+│   │   ├── ai-workflow-dev/        # 功能开发主链路（编排器）
+│   │   ├── ai-workflow-design-review/  # 设计文档 + 独立对抗评审
+│   │   ├── ai-workflow-estimate/   # 任务拆解与工时预估
+│   │   ├── ai-workflow-bugfix/     # 修 bug 链路（公司项目自动对接工具）
+│   │   └── ai-workflow-retro/      # 复盘关卡（人工反馈 + 改进提案）
 │   └── templates/             # 设计文档等模板
 ├── company/                   # 公司适配层：仅 amar/ultron 项目加载
-│   └── skills/aiflow-amar/    # 内部组件知识 + 代码风格 + 工具对接
+│   └── skills/ai-workflow-amar/    # 内部组件知识 + 代码风格 + 工具对接
 ├── runtime/                   # 运行时产物（执行日志、复盘、任务状态）
 │   ├── tasks/                 # 任务目录 + CURRENT 状态文件
 │   └── templates/
@@ -36,9 +36,9 @@ aiflow/
 
 | 场景 | 触发 |
 |------|------|
-| 功能开发（PRD 驱动） | "aiflow 新需求" / "走流程" + 需求描述或 PRD |
-| 修 bug / 优化 | "aiflow bugfix" + 现象描述 |
-| 继续上次任务 | "aiflow --continue" |
+| 功能开发（PRD 驱动） | "ai-workflow 新需求" / "走流程" + 需求描述或 PRD |
+| 修 bug / 优化 | "ai-workflow bugfix" + 现象描述 |
+| 继续上次任务 | "ai-workflow --continue" |
 | 单独设计评审 | "出设计文档" / "设计评审" |
 | 单独拆解排期 | "拆解任务" / "预估工时" |
 | 复盘 | "复盘"（主链路结尾会强制触发） |

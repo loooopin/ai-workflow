@@ -1,8 +1,8 @@
 # 执行日志 - {任务标题}
 
-- **任务 ID**: {aiflow-YYYYMMDD-序号}
+- **任务 ID**: {ai-workflow-YYYYMMDD-序号}
 - **类型**: feature | bugfix | optimize
-- **触发方式**: {aiflow-dev | aiflow-bugfix}
+- **触发方式**: {ai-workflow-dev | ai-workflow-bugfix}
 - **仓库/分支**:
 - **开始时间**:
 - **结束时间**:
