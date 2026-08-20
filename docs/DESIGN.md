@@ -229,4 +229,48 @@
 
 ---
 
+## 附录 A：借鉴溯源对照表
+
+> 记录工作流各机制的来源（2026-08-19 应 [P12] 整理）。迭代时用途：防止重复借鉴、防止误删已借鉴机制、评估某机制时回溯原始出处。
+> 用户原始意图见 `docs/ORIGINAL-PROMPTS.md`。
+
+### A.1 本地旧 skills 借鉴
+
+| 旧 skill | 借鉴的部分 | 落点 |
+|---------|-----------|------|
+| deep-interview | 模糊度量化评分、每轮只问一个问题、就绪关卡、轮次上限 | ai-workflow-dev 阶段 2 |
+| ralplan | 独立只读子 Agent 对抗评审、最强反对论证、被掩盖的权衡、三档结论、迭代上限呈报 | ai-workflow-design-review 2-3 步 |
+| ralph | ledger 纪律、完成检查附实际证据、失败闭环量化阈值 | dev 阶段 5/7、retro 提案升级规则 |
+| harness-retro | 提案落到具体文件、【非流程可解】标注、≥5 份日志触发聚类 | ai-workflow-retro 3 步与聚类节 |
+| prd-reader | 结构化提取要素、待澄清项显式传下游 | dev 阶段 1 |
+| auto-troubleshoot | 先读代码再查数据、三级证据纪律、成功失败对比、先展示原始数据 | ai-workflow-bugfix 阶段 2-3（借鉴最深） |
+| kibana/mse/bean-call | 公司工具能力目录 + 安全红线 | ai-workflow-amar 第 4 节（知识化，未脚本化） |
+| FeedbackGate.mdc | 上下文压缩后的状态恢复优先级 | dev/bugfix 阶段 0 |
+
+### A.2 GitHub 四套借鉴
+
+| 仓库 | 借鉴的部分 | 落点 |
+|------|-----------|------|
+| superpowers | 执行 ledger、红旗停表（反合理化表）、≥2 候选方案+排除理由、阶段边界审批门 | dev 阶段 5、design-review 1 步 |
+| mattpocock/skills | grill-me/grilling 轻量澄清、tdd 先写失败测试、CONTEXT.md 共享语言 | 阶段 2、bugfix 阶段 5、AGENTS/DESIGN 定位 |
+| context-mode | 状态外化对抗压缩、上下文预算化思想 | runtime/tasks/ + CURRENT + state.md |
+| anysearch | SKILL 教流程/配置存映射的分层、文档即契约 | ai-workflow-amar 组织方式（较浅） |
+
+### A.3 完全未借鉴
+
+- lanhu-analyzer（本地）：蓝湖设计稿分析，与后端研发工作流无关
+- mattpocock 写作/个人类 skill：writing-beats、obsidian-vault、edit-article、teach、handoff、loop-me 等
+- superpowers 的 hooks 机制：Cursor 侧无对应设施
+- context-mode 的 CLI/沙箱实现：只借思想
+
+### A.4 部分借鉴、部分弃用（明确取舍）
+
+- ralph 每次执行后独立 Architect 验收 → 成本太高，改为质量自检门，仅设计评审保留独立子 Agent
+- deep-interview 三种挑战模式（对立者/简化者/本体论者）→ 太重，澄清只保留评分+关卡
+- ralplan Architect + Critic 双角色 → 简化为单一评审 Agent
+- harness-retro 健康度量化评分 → 未引入，复盘先靠人工反馈驱动
+- FeedbackGate alwaysApply 全局弹窗 → 太打扰，完全未采用
+
+---
+
 *修改本文档时，请同步更新 CHANGELOG。*
