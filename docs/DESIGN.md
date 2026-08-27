@@ -123,7 +123,7 @@
 
 迭代机制的核心。设计要点：
 
-- **复盘是强制关卡**，未完成不得宣布任务结束
+- **复盘由 Agent 主动发起**，用户明确说"跳过复盘"时允许跳过（跳过需记录到 state.md）
 - "本次 AI 的问题"一栏**必须由用户亲填**，Agent 不得代写——这是用户明确要求的"复盘时需要人工提出本次 AI 的问题"
 - 改进提案必须落到**具体文件**，禁止"以后注意"式空话
 - 采纳的提案当场修改 + CHANGELOG 记版本，形成"反馈 → 修改 → 版本"闭环
@@ -144,13 +144,13 @@
 ```
                         ai-workflow-dev（主链路编排器）
                               │
-   ┌──────────┬───────────┼───────────┬──────────┐
-   ▼          ▼           ▼           ▼          ▼
- 阶段2      阶段3        阶段4       阶段5-6    阶段8
- 澄清      ai-workflow-      ai-workflow-     编码+单测   ai-workflow-retro
-（内联）   design-review  estimate  （内联）      │
-              │                                  │
-              └── 公司仓库时自动加载 ──┐          │
+   ┌──────────┬───────────┼───────────┬─────────────┐
+   ▼          ▼           ▼           ▼             ▼
+ 阶段2      阶段3        阶段4       阶段5-7       阶段8
+ 澄清    ai-workflow-  ai-workflow-  编码+单测     ai-workflow-retro
+（内联） design-review  estimate    +质量自检         │
+              │                     （内联）          │
+              └── 公司仓库时自动加载 ──┐              │
                                     ai-workflow-amar ◄┘
                                         ▲
                         ai-workflow-bugfix ──┘（独立链路，共享 amar 与 retro）
@@ -251,8 +251,8 @@
 
 | 仓库 | 借鉴的部分 | 落点 |
 |------|-----------|------|
-| superpowers | 执行 ledger、红旗停表（反合理化表）、≥2 候选方案+排除理由、阶段边界审批门 | dev 阶段 5、design-review 1 步 |
-| mattpocock/skills | grill-me/grilling 轻量澄清、tdd 先写失败测试、CONTEXT.md 共享语言 | 阶段 2、bugfix 阶段 5、AGENTS/DESIGN 定位 |
+| superpowers | 执行 ledger、红旗停表（反合理化表）、≥2 候选方案+排除理由、阶段边界审批门、verification-before-completion 反合理化纪律 | dev 阶段 5、design-review 1 步、dev 阶段 7 反合理化表 |
+| mattpocock/skills | grill-me/grilling 轻量澄清、tdd 红-绿循环+seam 原则+测试反模式、CONTEXT.md 共享语言 | 阶段 2、dev 阶段 6+bugfix 阶段 5、AGENTS/DESIGN 定位 |
 | context-mode | 状态外化对抗压缩、上下文预算化思想 | runtime/tasks/ + CURRENT + state.md |
 | anysearch | SKILL 教流程/配置存映射的分层、文档即契约 | ai-workflow-amar 组织方式（较浅） |
 

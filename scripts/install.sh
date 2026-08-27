@@ -16,11 +16,13 @@ conflict=0
 
 for skill_dir in "$AI_WORKFLOW_DIR"/core/skills/*/ "$AI_WORKFLOW_DIR"/company/skills/*/; do
   [ -d "$skill_dir" ] || continue
+  skill_dir="${skill_dir%/}"
   name="$(basename "$skill_dir")"
   target="$CURSOR_SKILLS_DIR/$name"
 
   if [ -L "$target" ]; then
     current="$(readlink "$target")"
+    current="${current%/}"
     if [ "$current" = "$skill_dir" ]; then
       echo "  已存在（跳过）: $name"
       skipped=$((skipped + 1))

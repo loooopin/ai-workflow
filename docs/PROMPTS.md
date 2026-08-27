@@ -40,7 +40,7 @@ ai-workflow --continue
 
 | 提示词 | 效果 |
 |--------|------|
-| `ai-workflow-dev --light` | 轻量模式：跳过设计评审与拆解（适合 ≤3 文件小改动），仍走澄清、编码、自测、复盘 |
+| `ai-workflow-dev --light` | 轻量模式：跳过设计评审与拆解（适合 ≤5 文件小改动），仍走澄清、编码、自测、复盘 |
 | `ai-workflow-bugfix --hotfix` | 热修模式：跳过完整复盘，只记一行到 hotfix 清单，事后补全 |
 | 任意阶段说"跳过本阶段" | 跳过当前关卡（会记录在 state.md，需你确认） |
 

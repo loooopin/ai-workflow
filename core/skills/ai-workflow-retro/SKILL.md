@@ -20,7 +20,7 @@ description: >-
 - 关键决策记录（过程中的取舍）
 - 返工/红旗停表记录（哪些地方卡住过、为什么）
 
-写入 `runtime/tasks/{task}/retro.md` 的日志部分（模板见 `runtime/templates/log-template.md`）。
+写入任务目录下的 `retro.md`（即 `{project}/.docs/PROCESS/{task}/retro.md`），模板见 `runtime/templates/retro-template.md`。
 
 ### 2. 人工反馈（必须由用户亲自填写，AI 不得代写）
 
