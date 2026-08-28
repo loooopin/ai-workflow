@@ -62,6 +62,18 @@ description: >-
 - 旁路/异步逻辑用既有线程池：`ThreadPoolConfig.XXX_EXECUTOR.execute(() -> {...})`
 - 注释极少，仅在必要时写中文 javadoc；工具类加 `@author` 标记
 
+### DAO 与 Redis 惯例
+
+- **DAO 粒度按业务域聚合**：同一业务域的多个 Redis 操作放在同一个 DAO 中，不为每个 Key 新建独立 DAO
+- **Redis Key 集中管理**：Key 模式集中在 DAO 内部的 `static class Keys` 中（或统一的 Keys 工具类），不散落在方法体内
+- **新增 DAO 前先查同类**：在 `dao/redis/` 目录下 grep 已有 DAO，确认没有可复用的 DAO 再新建
+- **跨服务迁移场景的 Redis Key 必须与原服务一致**，否则迁移期间无法读到老缓存
+
+### MSE/Pangu 配置惯例
+
+- 配置实体中使用包装类型（`Integer` / `Long` / `Boolean`），禁止基础类型（`int` / `long` / `boolean`）
+- 默认值直接在字段声明处赋值（如 `private Integer threshold = 0;`），不在业务代码中判空
+
 ### Commit 规范
 
 - 格式：`类型前缀: 中文描述`，前缀集合：`feat:` / `fix:` / `opt:` / `perf:`

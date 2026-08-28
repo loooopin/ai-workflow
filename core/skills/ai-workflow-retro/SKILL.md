@@ -40,6 +40,7 @@ description: >-
 规则：
 
 - 每条提案必须落到具体文件，禁止"以后注意"式空话
+- **落点优先级**：ai-workflow-dev/ai-workflow-amar/deep-interview 等 skill 正文 > .cursor/rules > .docs/RULES。优先修改 skill 以保证后续会话自动生效，仅当 skill 不适合承载时才降级到 rules
 - 根因是模型能力而非工作流缺陷的，标注【非流程可解】，不生成提案
 - 同类问题累计 2 次出现 → 优先级自动升高，提案改为修改 skill 正文而非补充说明
 
