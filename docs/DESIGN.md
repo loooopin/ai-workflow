@@ -164,6 +164,7 @@
 | ai-workflow-bugfix | 编排器 | 修 bug 独立链路（高频，占用户工作 6 成） |
 | ai-workflow-retro | 关卡 skill | 复盘，被两条链路强制调用 |
 | ai-workflow-amar | 知识层 | 公司组件/风格/工具知识，仅公司仓库加载 |
+| ai-workflow-release | 产物 skill | 上线文档生成（多语言/版本/配置/网关/定时任务/建表/Topic/顺序） |
 
 设计取舍：**bugfix 不复用 dev 链路**。因为两者节奏完全不同——dev 是关卡式长流程，bugfix 是证据驱动的侦查流程，强行统一会让两边都难用（这也是旧体系 prd-reader/ralplan/ralph 线性流水线的教训）。
 

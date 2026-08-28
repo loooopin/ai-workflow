@@ -4,6 +4,15 @@
 
 格式：`## [版本号] - YYYY-MM-DD`，条目注明来源复盘（关联 retro 文件）。
 
+## [0.3.0] - 2026-08-28
+
+来源：用户要求新增上线文档生成能力。
+
+### 新增
+- `company/skills/ai-workflow-release/SKILL.md`：上线文档生成 skill，自动分析分支变更输出 checklist（多语言/版本升级/MSE配置/网关/定时任务/MySQL建表/Kafka Topic/上线顺序/上线后验证）
+- `docs/PROMPTS.md` 新增触发词："上线文档"、"发布清单"、"部署文档"、"出上线单"
+- `docs/DESIGN.md` 技能架构表新增 ai-workflow-release
+
 ## [0.2.1] - 2026-08-27
 
 来源：对照原始借鉴 skills 审查后补缺。
