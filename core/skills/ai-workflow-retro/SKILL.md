@@ -49,6 +49,7 @@ description: >-
 - 用户逐条确认采纳哪些。
 - 采纳的提案**当场修改对应文件**，并在 `CHANGELOG.md` 追加一条（注明来源 retro 文件）。
 - 修改 skill 正文属于高风险变更：只改增量部分，不重构无关内容。
+- **强制同步到 ai-workflow 源 skill**：如果改进落点是项目本地 skill（如 `{project}/.cursor/skills/amar-*`），必须同时将等价改动同步到 `~/.cursor/skills/` 下对应的 ai-workflow 源 skill。项目本地 skill 是 ai-workflow 源 skill 在特定项目的具体化副本，改进必须回流到源头，否则其他项目无法受益。若源 skill 结构与本地 skill 差异较大无法直接搬运，则在源 skill 中以独立章节/规则条目的形式追加。
 
 ### 5. 归档
 
