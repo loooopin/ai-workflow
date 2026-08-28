@@ -40,16 +40,16 @@ description: >-
 规则：
 
 - 每条提案必须落到具体文件，禁止"以后注意"式空话
-- **落点优先级**：ai-workflow-dev/ai-workflow-amar/deep-interview 等 skill 正文 > .cursor/rules > .docs/RULES。优先修改 skill 以保证后续会话自动生效，仅当 skill 不适合承载时才降级到 rules
+- **落点范围**：只能指向 `~/.cursor/skills/` 下的全局 ai-workflow skill 文件（ai-workflow-dev / ai-workflow-amar / deep-interview 等）。禁止指向开发项目中的任何文件
 - 根因是模型能力而非工作流缺陷的，标注【非流程可解】，不生成提案
 - 同类问题累计 2 次出现 → 优先级自动升高，提案改为修改 skill 正文而非补充说明
 
 ### 4. 人工采纳与落地
 
 - 用户逐条确认采纳哪些。
-- 采纳的提案**当场修改对应文件**，并在 `CHANGELOG.md` 追加一条（注明来源 retro 文件）。
+- 采纳的提案**当场修改对应文件**，并在 `CHANGELOG.md`（`~/.cursor/skills/CHANGELOG.md`）追加一条（注明来源 retro 文件）。
+- **落点范围（硬性约束）**：复盘改进**只能**落到全局 ai-workflow skill 目录（`~/.cursor/skills/`）下的文件。**严禁**修改开发项目中的任何文件，包括但不限于项目的 `.cursor/rules/`、`.cursor/skills/`、`AGENTS.md`、`.docs/RULES/`。
 - 修改 skill 正文属于高风险变更：只改增量部分，不重构无关内容。
-- **禁止变更 AI 配置文件**：改进提案的落点**严禁**指向任何项目的 `.cursor/skills/`、`.cursor/rules/`、`AGENTS.md` 等 AI skill/rule 文件。这些文件的变更只能由用户在独立会话中主动发起，不随业务任务的复盘自动修改。如果复盘中确实发现需要改进 skill/rule 的点，仅在提案表中标注建议，不执行落地。
 
 ### 5. 归档
 

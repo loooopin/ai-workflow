@@ -61,6 +61,8 @@ description: >-
 - 重复的分支逻辑倾向重构为策略模式（handler 包）
 - 旁路/异步逻辑用既有线程池：`ThreadPoolConfig.XXX_EXECUTOR.execute(() -> {...})`
 - 注释极少，仅在必要时写中文 javadoc；工具类加 `@author` 标记
+- **DTO/Bean 类禁止作为 Service 内部类**：必须放 `bean` 或 `model` 包的独立文件中
+- **禁止使用全限定类名代替 import**：如 `redis.clients.jedis.Response` 应 import 后用短名，不要在代码中写全路径
 
 ### 参考项目先行
 
