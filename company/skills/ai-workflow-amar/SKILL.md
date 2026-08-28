@@ -62,6 +62,12 @@ description: >-
 - 旁路/异步逻辑用既有线程池：`ThreadPoolConfig.XXX_EXECUTOR.execute(() -> {...})`
 - 注释极少，仅在必要时写中文 javadoc；工具类加 `@author` 标记
 
+### 参考项目先行
+
+- 当用户提到"模仿 XX 项目"、"和 YY 写法保持一致"时，**必须先 grep 参考项目的实际代码**，理解其写法后再动手，不得按自己习惯自选方案
+- 典型场景：`CompletableFuture` 并行调用（看参考项目的线程池选型、allOf/join 模式）、`LoadingCache` 用法（看参考项目的 `load`/`loadAll` 实现模式）、API 选型（看参考项目调用的是哪个 wrapper/哪个枚举）
+- 参考项目常见位置：`/Users/user/workspace/` 下的兄弟仓库（如 `user-moa_bak`、`ultron-discover`、`ultron-room` 等）
+
 ### DAO 与 Redis 惯例
 
 - **DAO 粒度按业务域聚合**：同一业务域的多个 Redis 操作放在同一个 DAO 中，不为每个 Key 新建独立 DAO
