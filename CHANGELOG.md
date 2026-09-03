@@ -4,6 +4,24 @@
 
 格式：`## [版本号] - YYYY-MM-DD`，条目注明来源复盘（关联 retro 文件）。
 
+## [0.5.0] - 2026-09-03
+
+来源：`retro-20260903-quality-room`（ultron-room quality-room 指标异常排查复盘）。
+
+### 变更
+- `core/skills/ai-workflow-bugfix/SKILL.md` 阶段 2 新增 **⛔ 验证关卡**：
+  - 代码分析产出的假设不等于结论，进入阶段 3 前必须至少一个假设达到【已证实】
+  - 公司仓库必须查过日志才能进入阶段 3，纯代码推理不算"已证实"
+  - 假设清单中无【已证实】项时禁止输出结论性表述，必须向用户说明并请求验证信息
+  - 附反面案例引用（retro-20260903-quality-room）
+- `core/skills/ai-workflow-bugfix/SKILL.md` 阶段 2 新增 **🔄 外部链接降级策略**：
+  - tunnel/监控链接不可用时，必须从日志时间窗/traceId 还原请求数据，不得放弃
+
+### 新增
+- `company/skills/kibana-log-statistics/`：从 `~/.cursor/skills/` 迁入 ai-workflow 项目管理
+  - 修复 `log_query.py` keyword 搜索字段 bug：`message` → `line`（ES 中日志内容存储在 `line` 字段）
+  - 更新 SKILL.md 中所有脚本路径引用
+
 ## [0.4.0] - 2026-09-03
 
 来源：用户明确要求新增公司级排查能力（整合日志/配置/Redis/ES/后门/跨服务搜索）。
