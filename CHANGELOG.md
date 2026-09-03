@@ -4,6 +4,22 @@
 
 格式：`## [版本号] - YYYY-MM-DD`，条目注明来源复盘（关联 retro 文件）。
 
+## [0.4.0] - 2026-09-03
+
+来源：用户明确要求新增公司级排查能力（整合日志/配置/Redis/ES/后门/跨服务搜索）。
+
+### 新增
+- `company/skills/ai-workflow-troubleshoot/SKILL.md`：公司级问题排查能力编排 skill，整合六大能力为结构化排查流程
+  - 能力 1-2：引用已有 kibana-log-statistics、mse-config-query skill
+  - 能力 3：新增 Redis 数据探查（BeanShell 后门 + IStoreDao 模板）
+  - 能力 4：新增 ES 业务数据查询（BeanShell 后门 + ES 客户端模板）
+  - 能力 5-6：引用 generate-spring-bean-call、cross-repo-search skill
+- `docs/PROMPTS.md` 新增触发词："排查问题"、"查日志"、"查配置"、"查 Redis"、"查 ES 数据"、"troubleshoot"
+- `docs/DESIGN.md` 技能架构表新增 ai-workflow-troubleshoot，更新架构图
+
+### 变更
+- `docs/DESIGN.md` 已知限制表：「公司工具未脚本化」→「公司工具编排已结构化」
+
 ## [0.3.0] - 2026-08-28
 
 来源：用户要求新增上线文档生成能力。

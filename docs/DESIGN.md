@@ -154,6 +154,15 @@
                                     ai-workflow-amar ◄┘
                                         ▲
                         ai-workflow-bugfix ──┘（独立链路，共享 amar 与 retro）
+                              │
+                              ▼（阶段 2 自动加载）
+                    ai-workflow-troubleshoot（排查能力编排）
+                     ├── 日志查询（Kibana）
+                     ├── 配置查询（MSE）
+                     ├── Redis 探查（后门）
+                     ├── ES 数据查询（后门）
+                     ├── 通用后门调用
+                     └── 跨服务代码搜索
 ```
 
 | Skill | 类型 | 职责 |
@@ -162,11 +171,12 @@
 | ai-workflow-design-review | 阶段 skill | 设计文档 + 独立对抗评审，可独立使用 |
 | ai-workflow-estimate | 阶段 skill | 拆解与工时，可独立使用 |
 | ai-workflow-bugfix | 编排器 | 修 bug 独立链路（高频，占用户工作 6 成） |
+| ai-workflow-troubleshoot | 能力层 | 公司级排查能力编排：日志/配置/Redis/ES/后门/跨服务搜索，由 bugfix 自动加载也可独立使用 |
 | ai-workflow-retro | 关卡 skill | 复盘，被两条链路强制调用 |
 | ai-workflow-amar | 知识层 | 公司组件/风格/工具知识，仅公司仓库加载 |
 | ai-workflow-release | 产物 skill | 上线文档生成（多语言/版本/配置/网关/定时任务/建表/Topic/顺序） |
 
-设计取舍：**bugfix 不复用 dev 链路**。因为两者节奏完全不同——dev 是关卡式长流程，bugfix 是证据驱动的侦查流程，强行统一会让两边都难用（这也是旧体系 prd-reader/ralplan/ralph 线性流水线的教训）。
+设计取舍：**bugfix 不复用 dev 链路**。因为两者节奏完全不同——dev 是关卡式长流程，bugfix 是证据驱动的侦查流程，强行统一会让两边都难用（这也是旧体系 prd-reader/ralplan/ralph 线性流水线的教训）。**troubleshoot 独立于 bugfix 链路**，因为排查能力不仅 bugfix 需要，dev 编码阶段也可能用到（如验证数据状态）。
 
 ---
 
@@ -204,7 +214,7 @@
 
 | 限制 | 说明 | 可能的演进 |
 |------|------|-----------|
-| 公司工具未脚本化 | ai-workflow-amar 只描述能力清单，实际查询仍依赖旧 skill/手工 | 若高频使用，可仿 kibana-log-statistics 的"SKILL+scripts 分层"模式沉淀脚本 |
+| 公司工具编排已结构化 | ai-workflow-troubleshoot 整合六大能力（日志/配置/Redis/ES/后门/跨服务搜索）为结构化排查流程 | Redis/ES 查询的 Bean 名称需按项目确认；线上 Redis/ES 仍不可执行 |
 | 工时预估靠系数 | 无历史数据校准 | 积累 ≥10 份 estimate 产物后，用实际耗时回填校准系数 |
 | 单测覆盖策略粗 | 仅"核心逻辑必测" | 可结合 CI jacoco 数据细化 |
 | 协同通知未打通 | 拆解产物有分工建议，但无自动通知同事 | 需要 IM 集成，暂缓 |
