@@ -4,6 +4,18 @@
 
 格式：`## [版本号] - YYYY-MM-DD`，条目注明来源复盘（关联 retro 文件）。
 
+## [0.6.0] - 2026-10-10
+
+来源：`ultron-room` Follow Nudge（引导关注）任务复盘。
+
+### 变更
+- `company/skills/ai-workflow-amar/SKILL.md` 命名与结构偏好：
+  - 新增注释只写"做什么"不写"怎么做"规则，禁止描述分片策略/批量方式等实现细节
+  - 新增注释用纯陈述语气规则，禁止"值得"等主观词汇
+  - 新增循环/流式操作中不变量必须外提规则
+- `company/skills/ai-workflow-amar/SKILL.md` DAO 与 Redis 惯例：
+  - 新增同一数据源写入内聚在 DAO 方法中规则
+
 ## [0.5.0] - 2026-09-03
 
 来源：`retro-20260903-quality-room`（ultron-room quality-room 指标异常排查复盘）。
