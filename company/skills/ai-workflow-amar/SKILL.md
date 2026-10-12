@@ -58,6 +58,7 @@ description: >-
 
 - lowerCamelCase，业务语义直白（如 `dispatchCouponPreCheckAndBuild`）
 - 空值判断统一用 `Objects.isNull(x)` / `Objects.nonNull(x)`，禁止 `x == null` / `x != null`
+- 集合/字符串/Map 判空统一用工具类：`CollectionUtils.isEmpty(list)` / `StringUtils.isEmpty(str)` / `MapUtils.isEmpty(map)`，反之用 `isNotEmpty`；禁止直接调用 `.isEmpty()` 实例方法
 - 升级版方法用 `V2` 后缀（如 `lockV2`），不删旧方法（兼容期）
 - 重复的分支逻辑倾向重构为策略模式（handler 包）
 - 旁路/异步逻辑用既有线程池：`ThreadPoolConfig.XXX_EXECUTOR.execute(() -> {...})`
@@ -65,6 +66,7 @@ description: >-
 - **循环/流式操作中的不变量必须外提**：循环内不做可提取到循环外的计算（如 `now - millis` → 提为 `threshold`），AI 生成代码时主动优化，不等用户指出
 - 注释极少，仅在必要时写中文 javadoc；工具类加 `@author` 标记
 - **注释只写"做什么"，不写"怎么做"**：禁止在注释中描述实现细节（如分片策略、批量方式、数据结构选型），这些信息代码本身已表达。反例：`（同 roomId 分片，单次 mget）`、`（供后续复用）`
+- **接入文档只写调用方需要的信息**：每个字段/说明都必须通过"调用方拿到后会改变什么行为？"的检验。服务端内部逻辑（优先级规则、计算方式、频控策略细节）不写入接入文档，即使它能"帮助理解"。调用方只需知道字段含义和取值范围，不需要知道值是怎么算出来的
 - **注释用纯陈述语气**：禁止使用"值得"、"应该"、"建议"等主观/非陈述词汇，直接说明事实。反例：`推荐一个值得关注的人` → 正例：`推荐关注人`
 
 ### 参考项目先行
