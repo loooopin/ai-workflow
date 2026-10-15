@@ -15,7 +15,9 @@ ai-workflow/
 │   │   └── ai-workflow-retro/      # 复盘关卡（人工反馈 + 改进提案）
 │   └── templates/             # 设计文档等模板
 ├── company/                   # 公司适配层：仅 amar/ultron 项目加载
-│   └── skills/ai-workflow-amar/    # 内部组件知识 + 代码风格 + 工具对接
+│   ├── skills/ai-workflow-amar/    # 内部组件知识 + 代码风格 + 工具对接
+│   └── tools/                      # 上线/运维工具（自动安装到 ~/.cursor/skills/）
+│       └── amar-cube-task-creator/ # Cube 平台自动创建定时任务
 ├── runtime/                   # 运行时产物（执行日志、复盘、任务状态）
 │   ├── tasks/                 # 任务目录 + CURRENT 状态文件
 │   └── templates/

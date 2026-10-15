@@ -14,7 +14,7 @@ installed=0
 skipped=0
 conflict=0
 
-for skill_dir in "$AI_WORKFLOW_DIR"/core/skills/*/ "$AI_WORKFLOW_DIR"/company/skills/*/; do
+for skill_dir in "$AI_WORKFLOW_DIR"/core/skills/*/ "$AI_WORKFLOW_DIR"/company/skills/*/ "$AI_WORKFLOW_DIR"/company/tools/*/; do
   [ -d "$skill_dir" ] || continue
   skill_dir="${skill_dir%/}"
   name="$(basename "$skill_dir")"
