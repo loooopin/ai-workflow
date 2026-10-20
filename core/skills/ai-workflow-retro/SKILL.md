@@ -40,22 +40,33 @@ description: >-
 规则：
 
 - 每条提案必须落到具体文件，禁止"以后注意"式空话
-- **落点范围**：只能指向 `~/.cursor/skills/` 下的全局 ai-workflow skill 文件（ai-workflow-dev / ai-workflow-amar / deep-interview 等）。禁止指向开发项目中的任何文件
+- **落点范围**：只能指向 `~/.cursor/skills/` 下的全局 ai-workflow skill 文件。禁止指向开发项目中的任何文件
 - 根因是模型能力而非工作流缺陷的，标注【非流程可解】，不生成提案
 - 同类问题累计 2 次出现 → 优先级自动升高，提案改为修改 skill 正文而非补充说明
 
+#### Context Engineering 合规检查
+
+**每条提案在呈现给用户前，必须通过以下检查**（详见 `docs/CONTEXT-ENGINEERING.md`）：
+
+1. **体积合规**：目标文件修改后仍 ≤ 6KB？超出 → 提案必须同时说明拆分方案（拆到 stages/ 或 templates/）
+2. **去重检查**：新增规则是否与其他 skill 文件已有规则重复？重复 → 合并到最具体的已有文件，不另起新条
+3. **模板外置**：新增的示例代码 / 模板 / 场景描述 → 放到对应 skill 的 templates/ 子目录，不内联到 SKILL.md
+4. **最小化原则**：优先追加到已有文件的已有章节，而非新建文件或章节
+
+不符合以上任何一条的提案，**必须修改到合规后才能呈现**。
+
 ### 4. 人工采纳与落地
 
-- 用户逐条确认采纳哪些。
-- 采纳的提案**当场修改对应文件**，并在 `CHANGELOG.md`（`~/.cursor/skills/CHANGELOG.md`）追加一条（注明来源 retro 文件）。
-- **落点范围（硬性约束）**：复盘改进**只能**落到全局 ai-workflow skill 目录（`~/.cursor/skills/`）下的文件。**严禁**修改开发项目中的任何文件，包括但不限于项目的 `.cursor/rules/`、`.cursor/skills/`、`AGENTS.md`、`.docs/RULES/`。
-- 修改 skill 正文属于高风险变更：只改增量部分，不重构无关内容。
+- 用户逐条确认采纳哪些
+- 采纳的提案**当场修改对应文件**，并在 `CHANGELOG.md`（`~/workspace/ai-workflow/CHANGELOG.md`）追加一条（注明来源 retro 文件）
+- **落点范围（硬性约束）**：复盘改进**只能**落到全局 ai-workflow skill 目录（`~/.cursor/skills/`）下的文件。**严禁**修改开发项目中的任何文件
+- 修改 skill 正文属于高风险变更：只改增量部分，不重构无关内容
 
 ### 5. 归档
 
-- 更新任务 `state.md` 状态为已完结。
-- 清空 `runtime/tasks/CURRENT`（若本任务是 CURRENT）。
+- 更新任务 `state.md` 状态为已完结
+- 清空 `runtime/tasks/CURRENT`（若本任务是 CURRENT）
 
 ## 定期聚类（可选）
 
-累计 ≥5 份 retro 时，可触发聚类分析：按问题类别（需求理解/代码风格/过度设计/遗漏边界/流程摩擦）统计频率，找出系统性弱点，产出对 core/company 层的结构性改进建议。
+累计 ≥5 份 retro 时，可触发聚类分析：按问题类别统计频率，找出系统性弱点，产出结构性改进建议。

@@ -4,6 +4,32 @@
 
 格式：`## [版本号] - YYYY-MM-DD`，条目注明来源复盘（关联 retro 文件）。
 
+## [0.7.0] - 2026-10-20
+
+来源：用户要求审查工作流指令遵循问题，诊断后发现 Lost-in-the-Middle 效应 + 指令膨胀 + 阶段指令一次性加载三重问题。参考 Anthropic context engineering、AWS Agentic AI Lens、GitHub agentic primitives 最佳实践。
+
+### 新增
+- `docs/CONTEXT-ENGINEERING.md`：上下文工程规范（文件体积上限 ≤6KB、JIT 加载策略、长会话拆分建议、复盘合规检查）
+- `core/skills/ai-workflow-dev/stages/stage-2-clarify.md`：需求澄清阶段指令（从 SKILL.md 提取）
+- `core/skills/ai-workflow-dev/stages/stage-5-coding.md`：编码实现阶段指令（从 SKILL.md 提取）
+- `core/skills/ai-workflow-dev/stages/stage-6-7-testing.md`：测试与质量自检阶段指令（从 SKILL.md 提取）
+- `company/skills/ai-workflow-troubleshoot/templates/redis-queries.md`：Redis 查询模板（从 SKILL.md 提取）
+- `company/skills/ai-workflow-troubleshoot/templates/es-queries.md`：ES 查询模板（从 SKILL.md 提取）
+- `company/skills/ai-workflow-troubleshoot/templates/scenarios.md`：排查场景模板（从 SKILL.md 提取）
+
+### 变更（指令精简）
+- `core/skills/ai-workflow-dev/SKILL.md`：从 13.3KB 精简为 ≤5KB 编排器，阶段指令外置到 stages/ 子目录按需加载
+- `core/skills/ai-workflow-bugfix/SKILL.md`：行为准则 B1-B4 从 2KB 展开式压缩为 500 字节 checklist，新增上下文预算纪律
+- `company/skills/ai-workflow-troubleshoot/SKILL.md`：从 17.8KB 精简为 ≤4KB 路由器，模板外置到 templates/ 子目录按需加载，消除连锁 Read 全部能力 SKILL 的问题
+
+### 变更（复盘合规）
+- `core/skills/ai-workflow-retro/SKILL.md`：改进提案新增 Context Engineering 合规检查（体积合规、去重检查、模板外置、最小化原则），确保未来的复盘改进不违反上下文工程规范
+- `AGENTS.md`：必读清单新增 `docs/CONTEXT-ENGINEERING.md`；修改纪律新增上下文工程规范红线；仓库结构速览新增 stages/ 和 templates/ 子目录说明
+
+### 效果量化
+- dev 全流程（公司）单次活跃上下文：~22KB → ~12KB（编排器 + 当前阶段 + amar），降低 45%
+- bugfix 全流程（公司）单次活跃上下文：~157KB → ~25KB（消除连锁 Read），降低 84%
+
 ## [0.6.0] - 2026-10-10
 
 来源：`ultron-room` Follow Nudge（引导关注）任务复盘。
